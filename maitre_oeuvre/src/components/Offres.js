@@ -2,11 +2,32 @@ import React from "react";
 import Offre from "./Offre";
 import axios from "axios";
 const data = {"offres": [
-    "a", 
-    "b", 
-    "c", 
-    "d", 
-    "e"
+    {
+        "requierements": "Faire un truc",
+        "cost": 10000,
+        "time": 32,
+        "quantity": 12,
+        "propositions": [
+            {
+                "requierements": "Faire un truc",
+                "cost": 12000,
+                "time": 32,
+                "quantity": 12,
+                "fabricant": "ikea",
+                "valid": false,
+                "message": ""
+            },
+            {
+                "requierements": "Faire un autre truc",
+                "cost": 11000,
+                "time": 32,
+                "quantity": 12,
+                "fabricant": "ikea",
+                "valid": false,
+                "message": ""
+            }
+        ]
+    }
   ]};
 class Offres extends React.Component {
 
@@ -20,7 +41,7 @@ class Offres extends React.Component {
             })*/
     }
     createOffer =  (offre) => {
-        return <Offre name={offre} key={offre}/>;
+        return <Offre offre={offre} key={offre}/>;
     }
     createOffers =  (offres) => {
         return offres.map(this.createOffer);

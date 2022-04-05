@@ -7,9 +7,12 @@ class Offre extends React.Component {
 
     render() {
         return (
-            <div className="columns is-mobile is-centered">
-                <div className="p-5 has-text-centered is-one-third">
-                    <h1 className="title">{this.props.name}</h1>
+            <div className="columns is-mobile is-centered ">
+                <div className="box pr-6 pl-6 has-text-centered is-half  has-background-dark is-rounded">
+                    <h1 className="title has-text-white">{this.props.offre.requierements}</h1>
+                    <div className="subtitle has-text-white">Cout : {this.props.offre.cost}</div>
+                    <div className="subtitle has-text-white">Temps : {this.props.offre.time}</div>
+                    <div className="subtitle has-text-white">Quantité : {this.props.offre.quantity}</div>
                 </div>
             </div>
         );
