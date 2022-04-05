@@ -13,11 +13,11 @@ class AjouterOffre extends React.Component {
                         <label className="subtitle" htmlFor="caracteristiques">Caractéristiques technique : </label>
                         <textarea className="textarea is-info" placeholder="Caractéristiques" name="caracteristiques" id="caracteristiques"></textarea>
                         <label className="subtitle" htmlFor="cout">Cout : </label>
-                        <input className="input is-info" type="text" id="cout" name="cout" placeholder="Cout"></input>
+                        <input className="input is-info" type="number" id="cout" name="cout" placeholder="Cout"></input>
                         <label className="subtitle" htmlFor="temps">Temps : </label>
-                        <input className="input is-info" type="text" id="temps" name="temps" placeholder="Nb jours"></input>
+                        <input className="input is-info" type="number" id="temps" name="temps" placeholder="Nb jours"></input>
                         <label className="subtitle" htmlFor="quantite">Quantité : </label>
-                        <input className="input is-info" type="text" id="quantite" name="quantite" placeholder="Volume"></input>
+                        <input className="input is-info" type="number" id="quantite" name="quantite" placeholder="Volume"></input>
                         <button className="button m-2 is-success" onClick={() => document.getElementById("popup-resolution").classList.remove('is-active')}>Ajouter</button>
                     </div>
                 </div>

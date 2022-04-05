@@ -5,15 +5,42 @@ import Home from './components/Home';
 import DetailOffer from './components/DetailOffer';
 
 import Navbar from './components/Navbar';
-
+const data = {"offres": [
+  {
+      "requierements": "Faire un truc",
+      "cost": 10000,
+      "time": 32,
+      "quantity": 12,
+      "propositions": [
+          {
+              "requierements": "Faire un truc",
+              "cost": 12000,
+              "time": 32,
+              "quantity": 12,
+              "fabricant": "ikea",
+              "valid": false,
+              "message": ""
+          },
+          {
+              "requierements": "Faire un autre truc",
+              "cost": 11000,
+              "time": 32,
+              "quantity": 12,
+              "fabricant": "ikea",
+              "valid": false,
+              "message": ""
+          }
+      ]
+  }
+]};
 class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
         displayedTable:<Home />,
         components : {
-          "Home": <Home showComponent={this.showComponent} />,
-          "Detail": <DetailOffer showComponent={this.showComponent}/>
+          "Home": <Home data={data} showComponent={this.showComponent} />,
+          "Detail": <DetailOffer offres={data.offres[0]} showComponent={this.showComponent}/>
         }
     }
   }
