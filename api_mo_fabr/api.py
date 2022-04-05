@@ -1,3 +1,4 @@
+from tkinter import OFF
 from flask import Flask, request
 from flask_restful import reqparse, abort, Api, Resource
 
@@ -12,13 +13,28 @@ OFFERS = [
     {'offer2': {'requierements': 'Faire des trucs de fou', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': []}}
 ]
 
+def get_next_offer():
+    res = 1
+    for el in OFFERS.values():
+        print(f"key: {el.keys()}")
+        key = int(list(el.keys())[0].strip('offer'))
+        if key > res:
+            res = key
+    return res + 1
+
+
 
 def abort_if_todo_doesnt_exist(offer_id):
-    if offer_id not in OFFERS:
-        abort(404, message="Offer {} doesn't exist".format(offer_id))
+    for el in OFFERS:
+        if offer_id == list(el.keys())[0]:
+            return
+    abort(404, message="Offer {} doesn't exist".format(offer_id))
 
 parser = reqparse.RequestParser()
-parser.add_argument('offer')
+parser.add_argument('requierements')
+parser.add_argument('cost')
+parser.add_argument('time')
+parser.add_argument('quantity')
 
 
 # Todo
@@ -37,7 +53,7 @@ class Offer(Resource):
         args = parser.parse_args()
         print(f"args : {args}")
         offer = {'fabricant': args['fabricant']}
-        OFFERS[offer_id] = offer
+        OFFERS.append(offer)
         return offer, 201
 
 
@@ -50,10 +66,9 @@ class Offers(Resource):
     def put(self):
         args = parser.parse_args()
         print(f"args: {args}")
-        offer_id = int(max(OFFERS.keys()).lstrip('todo')) + 1
-        offer_id = 'offer%i' % offer_id
-        OFFERS[offer_id] = {'fabricant': args['fabricant']}
-        return OFFERS[offer_id], 201
+        offer_id = 'offer%i' % get_next_offer()
+        OFFERS.append({offer_id: {'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'propositions': []}})
+        return OFFERS[len(OFFERS)-1], 201
 
 ##
 ## Actually setup the Api resource routing here
