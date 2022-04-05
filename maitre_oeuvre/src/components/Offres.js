@@ -41,7 +41,7 @@ class Offres extends React.Component {
             })*/
     }
     createOffer =  (offre) => {
-        return <Offre offre={offre} key={offre}/>;
+        return <Offre showComponent={this.props.showComponent} offre={offre} key={offre}/>;
     }
     createOffers =  (offres) => {
         return offres.map(this.createOffer);
