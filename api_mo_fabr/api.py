@@ -57,7 +57,7 @@ class Offers(Resource):
 ## Actually setup the Api resource routing here
 ##
 api.add_resource(Offers, '/offers')
-api.add_resource(Offer, '/offers/<offers_id>')
+api.add_resource(Offer, '/offers/<offer_id>')
 
 
 if __name__ == '__main__':
