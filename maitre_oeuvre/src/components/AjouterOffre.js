@@ -8,13 +8,17 @@ class AjouterOffre extends React.Component {
             <div className="modal-background"></div>
             <div className="modal-content">
                 <div class="box">
-                    <h1 className="title has-text-centered has-text-white">Ajouter une offre</h1>
-                    <div id="form" class="box has-text-centered">
-                        <label className="subtitle has-text-white" htmlFor="name">Name: </label>
-                        <input className="input is-link" type="text" id="name" name="name" required/><br/><br/>
-                        <label className="subtitle has-text-white" htmlFor="description">Description: </label>
-                        <textarea  className="input is-link" type="text" id="description" name="description" required></textarea><br/><br/>
-                        <button className="button is-success" onClick={() => document.getElementById("popup-resolution").classList.remove('is-active')}>Add resolution</button>
+                    <h1 className="title has-text-centered">Ajouter une offre</h1>
+                    <div id="form" class="has-text-centered">
+                        <label className="subtitle" htmlFor="caracteristiques">Caractéristiques technique : </label>
+                        <textarea class="textarea is-info" placeholder="Caractéristiques" name="caracteristiques" id="caracteristiques"></textarea>
+                        <label className="subtitle" htmlFor="cout">Cout : </label>
+                        <input class="input is-info" type="text" id="cout" name="cout" placeholder="Cout"></input>
+                        <label className="subtitle" htmlFor="temps">Temps : </label>
+                        <input class="input is-info" type="text" id="temps" name="temps" placeholder="Nb jours"></input>
+                        <label className="subtitle" htmlFor="quantite">Quantité : </label>
+                        <input class="input is-info" type="text" id="quantite" name="quantite" placeholder="Volume"></input>
+                        <button className="button m-2 is-success" onClick={() => document.getElementById("popup-resolution").classList.remove('is-active')}>Ajouter</button>
                     </div>
                 </div>
             </div>
