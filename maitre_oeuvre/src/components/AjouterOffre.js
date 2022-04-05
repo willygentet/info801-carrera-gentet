@@ -7,17 +7,17 @@ class AjouterOffre extends React.Component {
             <div id="popup-resolution" className="modal">
             <div className="modal-background"></div>
             <div className="modal-content">
-                <div class="box">
+                <div className="box">
                     <h1 className="title has-text-centered">Ajouter une offre</h1>
-                    <div id="form" class="has-text-centered">
+                    <div id="form" className="has-text-centered">
                         <label className="subtitle" htmlFor="caracteristiques">Caractéristiques technique : </label>
-                        <textarea class="textarea is-info" placeholder="Caractéristiques" name="caracteristiques" id="caracteristiques"></textarea>
+                        <textarea className="textarea is-info" placeholder="Caractéristiques" name="caracteristiques" id="caracteristiques"></textarea>
                         <label className="subtitle" htmlFor="cout">Cout : </label>
-                        <input class="input is-info" type="text" id="cout" name="cout" placeholder="Cout"></input>
+                        <input className="input is-info" type="text" id="cout" name="cout" placeholder="Cout"></input>
                         <label className="subtitle" htmlFor="temps">Temps : </label>
-                        <input class="input is-info" type="text" id="temps" name="temps" placeholder="Nb jours"></input>
+                        <input className="input is-info" type="text" id="temps" name="temps" placeholder="Nb jours"></input>
                         <label className="subtitle" htmlFor="quantite">Quantité : </label>
-                        <input class="input is-info" type="text" id="quantite" name="quantite" placeholder="Volume"></input>
+                        <input className="input is-info" type="text" id="quantite" name="quantite" placeholder="Volume"></input>
                         <button className="button m-2 is-success" onClick={() => document.getElementById("popup-resolution").classList.remove('is-active')}>Ajouter</button>
                     </div>
                 </div>
