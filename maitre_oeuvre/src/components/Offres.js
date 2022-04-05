@@ -1,6 +1,17 @@
 import React from "react";
+import axios from "axios";
 
 class Offre extends React.Component {
+
+    componentDidMount() {
+        axios.defaults.baseURL = 'http://127.0.0.1:5000';
+        axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.get("/offers")
+            .then((res) => {
+                console.log(res.data)
+            })
+    }
 
     render() {
         return (
