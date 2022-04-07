@@ -7,7 +7,7 @@ class Offre extends React.Component {
 
     render() {
         return (
-            <div className="columns is-mobile is-centered ">
+            <div className="columns is-mobile is-centered " onClick={() => this.props.showComponent('Detail')}>
                 <div className="box pr-6 pl-6 has-text-centered is-half  has-background-dark is-rounded">
                     <h1 className="title has-text-white">{this.props.offre.requierements}</h1>
                     <div className="subtitle has-text-white">Cout : {this.props.offre.cost}</div>
