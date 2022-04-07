@@ -1,3 +1,5 @@
+from ast import arg
+from msilib.schema import Class
 from tkinter import OFF
 from flask import Flask, request
 from flask_restful import reqparse, abort, Api, Resource
@@ -10,7 +12,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 OFFERS = [
     {'offer1': {'requierements': 'Faire un truc', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': [
         {'requierements': 'Faire un truc', 'cost': 12000, 'time': 32, 'quantity': 12, 'fabricant': 'ikea', 'valid': False, 'message': ""},
-        {'requierements': 'Faire un autre truc', 'cost': 11000, 'time': 32, 'quantity': 12, 'fabricant': 'ikea', 'valid': False, 'message': ""}
+        {'requierements': 'Faire un autre truc', 'cost': 11000, 'time': 32, 'quantity': 12, 'fabricant': 'apple', 'valid': False, 'message': ""}
     ]}},
     {'offer2': {'requierements': 'Faire des trucs de fou', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': []}}
 ]
@@ -37,6 +39,9 @@ parser.add_argument('requierements')
 parser.add_argument('cost')
 parser.add_argument('time')
 parser.add_argument('quantity')
+parser.add_argument('fabricant')
+parser.add_argument('valid')
+parser.add_argument('message')
 
 
 # Todo
@@ -48,18 +53,29 @@ class Offer(Resource):
             if(offer_id == list(offer)[0]):
                 return offer
 
-    def delete(self, offer_id):
+class AddProp(Resource):
+    def patch(self, offer_id):
         abort_if_todo_doesnt_exist(offer_id)
-        del OFFERS[offer_id]
-        return '', 204
-
-    def put(self, offer_id):
         args = parser.parse_args()
-        print(f"args : {args}")
-        offer = {'fabricant': args['fabricant']}
-        OFFERS.append(offer)
-        return offer, 201
+        print(f"args: {args}")
+        for offer in OFFERS:
+            if(offer_id == list(offer)[0]):
+                prop = {'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'fabricant': args['fabricant'], 'valid': False, 'message': ""}
+                offer[offer_id]['propositions'].append(prop)
+                return prop
 
+class Valid(Resource):
+    def patch(self, offer_id):
+        abort_if_todo_doesnt_exist(offer_id)
+        args = parser.parse_args()
+        print(f"args: {args}")
+        for offer in OFFERS:
+            if(offer_id == list(offer)[0]):
+                for prop in offer[offer_id]['propositions']:
+                    if(prop['fabricant'] == args['fabricant']):
+                        prop['valid'] = bool(args['valid'])
+                        prop['message'] = args['message']
+                        return prop
 
 # TodoList
 # shows a list of all todos, and lets you POST to add new tasks
@@ -79,6 +95,8 @@ class Offers(Resource):
 ##
 api.add_resource(Offers, '/offers')
 api.add_resource(Offer, '/offers/<offer_id>')
+api.add_resource(AddProp, '/addprop/<offer_id>')
+api.add_resource(Valid, '/valid/<offer_id>')
 
 
 if __name__ == '__main__':
