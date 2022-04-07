@@ -17,7 +17,7 @@ OFFERS = [
 
 def get_next_offer():
     res = 1
-    for el in OFFERS.values():
+    for el in OFFERS:
         print(f"key: {el.keys()}")
         key = int(list(el.keys())[0].strip('offer'))
         if key > res:
@@ -44,7 +44,9 @@ parser.add_argument('quantity')
 class Offer(Resource):
     def get(self, offer_id):
         abort_if_todo_doesnt_exist(offer_id)
-        return OFFERS[offer_id]
+        for offer in OFFERS:
+            if(offer_id == list(offer)[0]):
+                return offer
 
     def delete(self, offer_id):
         abort_if_todo_doesnt_exist(offer_id)
