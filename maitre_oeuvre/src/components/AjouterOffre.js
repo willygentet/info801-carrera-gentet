@@ -12,10 +12,11 @@ class AjouterOffre extends React.Component {
         }
       }
     addOffer(){
+        console.log("oh connard")
         axios.defaults.baseURL = 'http://127.0.0.1:5000';
         axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.put("/offers?requirements="+this.state.requirements+"&cost="+this.state.cost+"&time="+this.state.time+"&quantity="+this.state.quantity)
+        axios.put("/offers?requierements="+this.state.requirements+"&cost="+this.state.cost+"&time="+this.state.time+"&quantity="+this.state.quantity)
             .then((res) => {
                 document.getElementById("popup-resolution").classList.remove('is-active')
             })
@@ -36,11 +37,12 @@ class AjouterOffre extends React.Component {
                         <input className="input is-info" type="number" id="temps" name="temps" placeholder="Nb jours" onChange={event => this.setState({time: event.target.value})}></input>
                         <label className="subtitle" htmlFor="quantite">Quantité : </label>
                         <input className="input is-info" type="number" id="quantite" name="quantite" placeholder="Volume" onChange={event => this.setState({quantity: event.target.value})}></input>
-                        <button className="button m-2 is-success" onClick={() => document.getElementById("popup-resolution").classList.remove('is-active')}>Ajouter</button>
+                        <button className="button m-2 is-success" onClick={() => this.addOffer()}>Ajouter</button>
                     </div>
                 </div>
             </div>
-            <button className="modal-close is-large" aria-label="close" onClick={() =>this.addOffer()}></button>
+            <button className="modal-close is-large" aria-label="close" onClick={() => 
+                document.getElementById("popup-resolution").classList.remove('is-active')}></button>
         </div>
         );
     }

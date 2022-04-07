@@ -19,7 +19,7 @@ class App extends React.Component{
     }
   }
   componentDidUpdate(){
-    this.showComponent("Home")
+    //this.showComponent("Home")
   }
   componentDidMount(){
     axios.defaults.baseURL = 'http://127.0.0.1:5000';
