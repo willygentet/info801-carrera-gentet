@@ -1,9 +1,11 @@
 from tkinter import OFF
 from flask import Flask, request
 from flask_restful import reqparse, abort, Api, Resource
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 OFFERS = [
     {'offer1': {'requierements': 'Faire un truc', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': [
