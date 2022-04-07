@@ -8,7 +8,7 @@ class Home extends React.Component {
         return (
             <div>
                 <button className="button is-success" onClick={() => document.getElementById("popup-resolution").classList.add('is-active')}>Ajouter une offre</button>
-                <Offres data={this.props.data} showComponent={this.props.showComponent}/>
+                <Offres from="Home" data={this.props.data} showDetail={this.props.showDetail}/>
                 <AjouterOffre/>
             </div>
         );
