@@ -18,22 +18,23 @@ class App extends React.Component{
         data: [],
     }
   }
-  componentDidUpdate(){
-    //this.showComponent("Home")
-  }
   componentDidMount(){
     axios.defaults.baseURL = 'http://127.0.0.1:5000';
     axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    this.fetch_data()
+  }
+  fetch_data= () =>{
+    console.log("fetching data")
     axios.get("/offers")
-        .then((res) => {
-          this.setState({data:res.data},this.start(res.data))
-        })
+    .then((res) => {
+      this.setState({data:res.data},this.start(res.data))
+    })
   }
   start = (data) =>{
     this.setState({components : {
       "Loading": <Loading />,
-      "Home": <Home data={data} showDetail={this.showDetail} />,
+      "Home": <Home fetchdata={this.fetch_data} data={data} showDetail={this.showDetail} />,
       "Detail": <DetailOffer offres={data} showComponent={this.showComponent}/>
     }}, this.showComponent('Home'))
    
@@ -43,7 +44,7 @@ class App extends React.Component{
     n = n -1
     this.setState({components : {
       "Loading": <Loading />,
-      "Home": <Home data={this.state.data} showDetail={this.showDetail} />,
+      "Home": <Home fetchdata={this.fetch_data} data={this.state.data} showDetail={this.showDetail} />,
       "Detail": <DetailOffer id={id} offres={this.state.data[n]} showComponent={this.showComponent}/>
     }}, this.showComponent('Detail'))
    
