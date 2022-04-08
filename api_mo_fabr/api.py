@@ -73,7 +73,7 @@ class Valid(Resource):
             if(offer_id == list(offer)[0]):
                 for prop in offer[offer_id]['propositions']:
                     if(prop['fabricant'] == args['fabricant']):
-                        prop['valid'] = bool(args['valid'])
+                        prop['valid'] = args['valid'].lower() == 'true'
                         prop['message'] = args['message']
                         return prop
 
