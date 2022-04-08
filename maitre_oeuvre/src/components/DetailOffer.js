@@ -3,10 +3,10 @@ import Proposition from "./Proposition";
 
 class DetailOffer extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
     }    
     createProposition =  (proposition) => {
-        return <Proposition proposition={proposition} key={proposition} />;
+        return <Proposition id={this.props.id} fetchdata={this.props.fetchdata} proposition={proposition} key={this.props.id} />;
     }
     createPropositions =  (propositions) => {
         if(propositions.length > 0){
