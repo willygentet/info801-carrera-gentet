@@ -68,14 +68,19 @@ class Valid(Resource):
     def patch(self, offer_id):
         abort_if_todo_doesnt_exist(offer_id)
         args = parser.parse_args()
+        is_valid = False
         print(f"args: {args}")
         for offer in OFFERS:
             if(offer_id == list(offer)[0]):
                 for prop in offer[offer_id]['propositions']:
-                    if(prop['fabricant'] == args['fabricant']):
-                        prop['valid'] = args['valid'].lower() == 'true'
-                        prop['message'] = args['message']
-                        return prop
+                    if(prop['valid']):
+                        is_valid = True
+                if(not(is_valid) or not(args['valid'].lower() == 'true')):
+                    for prop in offer[offer_id]['propositions']:
+                        if(prop['fabricant'] == args['fabricant']):
+                            prop['valid'] = args['valid'].lower() == 'true'
+                            prop['message'] = args['message']
+                            return prop
 
 # TodoList
 # shows a list of all todos, and lets you POST to add new tasks
