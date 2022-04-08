@@ -15,13 +15,24 @@
       <div class="subtitle has-text-white">Cout : {{ cost }}</div>
       <div class="subtitle has-text-white">Time : {{ time }}</div>
       <div class="subtitle has-text-white">Quantité : {{ quantity }}</div>
+      <button @click="showModal()" class="button is-success">Proposer</button>
+      <add-proposition-modal
+        :requierements="requierements"
+        :cost="cost"
+        :time="time"
+        :quantity="quantity"
+        :propositions="propositions"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import AddPropositionModal from "./AddPropositionModal.vue";
 export default {
+  components: { AddPropositionModal },
   name: "OfferElement",
+  methods: {},
   props: {
     requierements: {
       type: String,

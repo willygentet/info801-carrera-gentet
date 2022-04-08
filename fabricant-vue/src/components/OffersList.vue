@@ -2,6 +2,13 @@
   <div class="columns is-mobile is-centered">
     <div class="p-5 has-text-centered is-one-third">
       <h1 class="title">Propositions</h1>
+      <input
+        class="input is-info"
+        type="text"
+        name="fabricant"
+        id="fabricant"
+        placeholder="Entrer un fabricant"
+      />
       <div
         v-for="proposition in propositions"
         :key="get(proposition).requierements"
