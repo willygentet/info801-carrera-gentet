@@ -5,6 +5,7 @@ import Home from './components/Home';
 import DetailOffer from './components/DetailOffer';
 import Loading from "./components/Loading";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 import Navbar from './components/Navbar';
 
@@ -26,7 +27,6 @@ class App extends React.Component{
     this.fetch_data()
   }
   fetch_data= (redirect = true) =>{
-    console.log("aaaa")
     if(redirect){
     axios.get("/offers")
     .then((res) => {
@@ -62,6 +62,7 @@ class App extends React.Component{
       <div className="App">
           <Navbar/>
           {this.state.components[this.state.displayedTable]}
+          <Footer/>
       </div>
     );
   }
