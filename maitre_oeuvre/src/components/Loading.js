@@ -5,7 +5,7 @@ class Loading extends React.Component {
     render() {
         return (
             <div className="title">
-                Loading....
+                Le serveur n'est pas allumé &#128513;
             </div>
         );
     }
