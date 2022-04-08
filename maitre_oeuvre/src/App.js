@@ -18,23 +18,30 @@ class App extends React.Component{
         data: [],
     }
   }
-  componentDidUpdate(){
-    //this.showComponent("Home")
-  }
   componentDidMount(){
+    this.showComponent('Loading')
     axios.defaults.baseURL = 'http://127.0.0.1:5000';
     axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    this.fetch_data()
+  }
+  fetch_data= (redirect = true) =>{
+    console.log("aaaa")
+    if(redirect){
     axios.get("/offers")
-        .then((res) => {
-          this.setState({data:res.data},this.start(res.data))
-        })
+    .then((res) => {
+      this.setState({data:res.data},this.start(res.data))
+    })
+  }else{
+    axios.get("/offers")
+      .then((res) => {
+        this.setState({data:res.data})
+      })
+    }
   }
   start = (data) =>{
     this.setState({components : {
-      "Loading": <Loading />,
-      "Home": <Home data={data} showDetail={this.showDetail} />,
-      "Detail": <DetailOffer offres={data} showComponent={this.showComponent}/>
+      "Home": <Home fetchdata={this.fetch_data} data={data} showDetail={this.showDetail} />
     }}, this.showComponent('Home'))
    
   }
@@ -42,17 +49,13 @@ class App extends React.Component{
     let n = id.substring(5)
     n = n -1
     this.setState({components : {
-      "Loading": <Loading />,
-      "Home": <Home data={this.state.data} showDetail={this.showDetail} />,
-      "Detail": <DetailOffer id={id} offres={this.state.data[n]} showComponent={this.showComponent}/>
+      "Home": <Home fetchdata={this.fetch_data} data={this.state.data} showDetail={this.showDetail} />,
+      "Detail": <DetailOffer id={id} fetchdata={this.fetch_data} offres={this.state.data[n]} showComponent={this.showComponent}/>
     }}, this.showComponent('Detail'))
    
   }
   showComponent = (componentName) => {
     this.setState({displayedTable: componentName});
-  }
-  componentWillMount(){
-    this.showComponent('Loading')
   }
   render() {
     return (

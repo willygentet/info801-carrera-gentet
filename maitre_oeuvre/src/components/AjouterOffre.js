@@ -3,7 +3,7 @@ import axios from "axios";
 
 class AjouterOffre extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             requirements:"",
             cost:0,
@@ -12,13 +12,13 @@ class AjouterOffre extends React.Component {
         }
       }
     addOffer(){
-        console.log("oh connard")
         axios.defaults.baseURL = 'http://127.0.0.1:5000';
         axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.put("/offers?requierements="+this.state.requirements+"&cost="+this.state.cost+"&time="+this.state.time+"&quantity="+this.state.quantity)
             .then((res) => {
                 document.getElementById("popup-resolution").classList.remove('is-active')
+                this.props.fetchdata()
             })
     }
     render() {
