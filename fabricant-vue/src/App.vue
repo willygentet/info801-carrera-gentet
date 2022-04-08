@@ -1,25 +1,22 @@
 <template>
-  <offers-list />
+  <div>
+    <nav-bar />
+    <offers-list />
+  </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBar.vue";
 import OffersList from "./components/OffersList.vue";
 
 export default {
   name: "App",
   components: {
     OffersList,
+    NavBar,
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
