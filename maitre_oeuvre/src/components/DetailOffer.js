@@ -19,7 +19,7 @@ class DetailOffer extends React.Component {
         return (
             <div>
                 <div className="columns">
-                    <button className="button column is-one-fifth p-2 is-danger" onClick={() => this.props.showComponent('Home')}>Return</button>
+                    <button className="button column is-one-fifth p-2 is-danger" onClick={() => this.props.showComponent('Home')}>Retour</button>
                 </div>
                 <div className="columns mb-6 is-three-fifths is-centered">
                     <div className="box column mb-6 pr-6 pl-6 has-text-centered is-three-fifths  has-background-dark is-rounded">
