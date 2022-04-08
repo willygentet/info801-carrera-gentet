@@ -5,8 +5,8 @@ class Proposition extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            message:"",
-            valide:this.props.valid
+            message:this.props.proposition.message,
+            valide:this.props.proposition.valid
         }
     }
     changeMessage = (event) =>{
@@ -14,7 +14,8 @@ class Proposition extends React.Component {
         axios.patch("/valid/"+this.props.id+"?fabricant="+this.props.proposition.fabricant+"&valid="+this.state.valide+"&message="+event.target.value)
         .then((res) => {
             if(res.data != null){
-                this.setState({valide : res.data.valid})
+                this.setState({valide : res.data.valid,message : res.data.message})
+                this.props.fetchdata(false)
             }
         })
     }
@@ -22,7 +23,7 @@ class Proposition extends React.Component {
         axios.patch("/valid/"+this.props.id+"?fabricant="+this.props.proposition.fabricant+"&valid="+validate+"&message="+this.state.message)
         .then((res) => {
             if(res.data != null){
-                this.setState({valide : res.data.valid})
+                this.setState({valide : res.data.valid,message : res.data.message})
                 this.props.fetchdata(false)
             }
         })
