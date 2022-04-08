@@ -5,6 +5,7 @@ import Home from './components/Home';
 import DetailOffer from './components/DetailOffer';
 import Loading from "./components/Loading";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 import Navbar from './components/Navbar';
 
@@ -61,6 +62,7 @@ class App extends React.Component{
       <div className="App">
           <Navbar/>
           {this.state.components[this.state.displayedTable]}
+          <Footer/>
       </div>
     );
   }
