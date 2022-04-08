@@ -1,9 +1,15 @@
 import React from "react";
+import Proposition from "./Proposition";
 
 class DetailOffer extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
+    }    
+    createProposition =  (proposition) => {
+        return <Proposition proposition={proposition} key={proposition} />;
+    }
+    createPropositions =  (propositions) => {
+        return propositions.map(this.createProposition);
     }
     render() {
         return (
@@ -17,6 +23,7 @@ class DetailOffer extends React.Component {
                         <div className="subtitle has-text-white">Cout : {this.props.offres[this.props.id].cost}</div>
                         <div className="subtitle has-text-white">Temps : {this.props.offres[this.props.id].time}</div>
                         <div className="subtitle has-text-white">Quantité : {this.props.offres[this.props.id].quantity}</div>
+                        {this.createPropositions(this.props.offres[this.props.id].propositions)}
                     </div>
                 </div>
             </div>

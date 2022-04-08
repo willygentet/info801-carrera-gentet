@@ -25,7 +25,6 @@ class App extends React.Component{
     this.fetch_data()
   }
   fetch_data= () =>{
-    console.log("fetching data")
     axios.get("/offers")
     .then((res) => {
       this.setState({data:res.data},this.start(res.data))
