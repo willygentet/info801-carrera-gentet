@@ -26,7 +26,6 @@ class App extends React.Component{
     this.fetch_data()
   }
   fetch_data= (redirect = true) =>{
-    console.log("aaaa")
     if(redirect){
     axios.get("/offers")
     .then((res) => {
