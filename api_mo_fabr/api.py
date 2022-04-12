@@ -97,7 +97,7 @@ class Offers(Resource):
         args = parser.parse_args()
         print(f"args: {args}")
         offer_id = 'offer%i' % get_next_offer()
-        OFFERS.append({offer_id: {'id':OFFERS.length,'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'propositions': []}})
+        OFFERS.append({offer_id: {'id':len(OFFERS),'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'propositions': []}})
         return OFFERS[len(OFFERS)-1], 201
 
 ##
