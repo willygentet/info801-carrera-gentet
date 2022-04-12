@@ -8,6 +8,7 @@
         name="fabricant"
         id="fabricant"
         placeholder="Entrer un fabricant"
+        v-model="fabricant"
       />
       <div
         v-for="proposition in propositions"
@@ -19,6 +20,7 @@
           :time="get(proposition).time"
           :quantity="get(proposition).quantity"
           :propositions="get(proposition).propositions"
+          :fabricant="fabricant"
         />
       </div>
     </div>
@@ -37,12 +39,16 @@ export default {
   data() {
     return {
       propositions: [],
+      fabricant: "",
     };
   },
   methods: {
     get(proposition) {
       let key = Object.keys(proposition)[0];
       return proposition[key];
+    },
+    getFabr() {
+      return document.getElementById("fabricant").value;
     },
   },
   created() {

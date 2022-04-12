@@ -16,7 +16,7 @@
       <div class="subtitle has-text-white">Time : {{ time }}</div>
       <div class="subtitle has-text-white">Quantité : {{ quantity }}</div>
 
-      <button @click="showModal()" class="button is-success">Proposer</button>
+      <button @click="showModal()" class="button">Proposer</button>
 
       <div id="popup-resolution" class="modal">
         <div class="modal-background"></div>
@@ -71,6 +71,40 @@
           aria-label="close"
         ></button>
       </div>
+      <div></div>
+      <div v-if="getProposition(fabricant) != null">
+        <div
+          v-if="getProposition(fabricant).valid"
+          class="box has-background-success is-rounded m-2"
+        >
+          <h1 class="title has-text-white">
+            {{ getProposition(fabricant).requierements }}
+          </h1>
+          <div class="subtitle has-text-white">
+            Cout : {{ getProposition(fabricant).cost }}
+          </div>
+          <div class="subtitle has-text-white">
+            Time : {{ getProposition(fabricant).time }}
+          </div>
+          <div class="subtitle has-text-white">
+            Quantité : {{ getProposition(fabricant).quantity }}
+          </div>
+        </div>
+        <div v-else class="box has-background-danger is-rounded m-2">
+          <h1 class="title has-text-white">
+            {{ getProposition(fabricant).requierements }}
+          </h1>
+          <div class="subtitle has-text-white">
+            Cout : {{ getProposition(fabricant).cost }}
+          </div>
+          <div class="subtitle has-text-white">
+            Time : {{ getProposition(fabricant).time }}
+          </div>
+          <div class="subtitle has-text-white">
+            Quantité : {{ getProposition(fabricant).quantity }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +122,18 @@ export default {
     closeModal() {
       let modal = document.querySelector(".modal");
       modal.classList.remove("is-active");
+    },
+    getFabricant() {
+      return document.getElementById("fabricant").value;
+    },
+    getProposition(fabricant) {
+      for (let i = 0; i < this.propositions.length; i++) {
+        let prop = this.propositions[i];
+        if (prop["fabricant"] === fabricant) {
+          return prop;
+        }
+      }
+      return null;
     },
   },
   props: {
@@ -109,6 +155,10 @@ export default {
     },
     propositions: {
       type: Array,
+      required: true,
+    },
+    fabricant: {
+      type: String,
       required: true,
     },
   },
