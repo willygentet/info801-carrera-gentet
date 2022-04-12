@@ -11,14 +11,14 @@
         is-rounded
       "
     >
-      <h1 class="title has-text-white">{{ requierements }}</h1>
-      <div class="subtitle has-text-white">Cout : {{ cost }}</div>
-      <div class="subtitle has-text-white">Time : {{ time }}</div>
-      <div class="subtitle has-text-white">Quantité : {{ quantity }}</div>
+      <h1 class="title has-text-white">{{ this.requierements }}</h1>
+      <div class="subtitle has-text-white">Cout : {{ this.cost }}</div>
+      <div class="subtitle has-text-white">Time : {{ this.time }}</div>
+      <div class="subtitle has-text-white">Quantité : {{ this.quantity }}</div>
 
-      <button @click="showModal()" class="button is-success">Proposer</button>
+      <button @click="showModal(this.id)" class="button is-success">Proposer</button>
 
-      <div id="popup-resolution" class="modal">
+      <div id="popup-resolution" :class='"modal id"+ this.id'>
         <div class="modal-background"></div>
         <div class="modal-content">
           <div class="box">
@@ -32,7 +32,7 @@
                 placeholder="Caractéristiques"
                 name="caracteristiques"
                 id="caracteristiques"
-                :value="requierements"
+                :value="this.requierements"
               ></textarea>
               <label class="subtitle">Cout : </label>
               <input
@@ -41,7 +41,7 @@
                 id="cout"
                 name="cout"
                 placeholder="Cout"
-                :value="cost"
+                :value="this.cost"
               />
               <label class="subtitle">Temps : </label>
               <input
@@ -59,14 +59,14 @@
                 id="quantite"
                 name="quantite"
                 placeholder="Volume"
-                :value="quantity"
+                :value="this.quantity"
               />
               <button class="button m-2 is-success">Ajouter</button>
             </div>
           </div>
         </div>
         <button
-          @click="closeModal()"
+          @click="closeModal(this.id)"
           class="modal-close is-large"
           aria-label="close"
         ></button>
@@ -81,16 +81,20 @@ export default {
   components: {},
   name: "OfferElement",
   methods: {
-    showModal() {
-      let modal = document.querySelector(".modal");
+    showModal(id) {
+      let modal = document.querySelector(".id"+id);
       modal.classList.add("is-active");
     },
-    closeModal() {
-      let modal = document.querySelector(".modal");
+    closeModal(id) {
+      let modal = document.querySelector(".id"+id);
       modal.classList.remove("is-active");
     },
   },
   props: {
+    id:{
+      type: Number,
+      required: true,
+    },
     requierements: {
       type: String,
       required: true,
