@@ -34,6 +34,7 @@ class Proposition extends React.Component {
                 <div className="columns is-four-fifths is-centered">
                     <div className={'box column pr-6 pl-6 has-text-centered is-four-fifths  is-rounded'+ (this.state.valide ? ' has-background-success' : ' has-background-danger')}>
                         <h1 className="title has-text-white">{this.props.proposition.requierements}</h1>
+                        <div className="subtitle has-text-white">Fabriquant : {this.props.proposition.fabricant}</div>
                         <div className="subtitle has-text-white">Cout : {this.props.proposition.cost}</div>
                         <div className="subtitle has-text-white">Temps : {this.props.proposition.time}</div>
                         <div className="subtitle has-text-white">Quantité : {this.props.proposition.quantity}</div>
