@@ -16,9 +16,9 @@
       <div class="subtitle has-text-white">Time : {{ this.time }}</div>
       <div class="subtitle has-text-white">Quantité : {{ this.quantity }}</div>
 
-      <button @click="showModal(this.id)" class="button is-success">Proposer</button>
+      <button @click="showModal(this.id)" class="button">Proposer</button>
 
-      <div id="popup-resolution" :class='"modal id"+ this.id'>
+      <div id="popup-resolution" :class="'modal id' + this.id">
         <div class="modal-background"></div>
         <div class="modal-content">
           <div class="box">
@@ -71,6 +71,40 @@
           aria-label="close"
         ></button>
       </div>
+      <div></div>
+      <div v-if="getProposition(fabricant) != null">
+        <div
+          v-if="getProposition(fabricant).valid"
+          class="box has-background-success is-rounded m-2"
+        >
+          <h1 class="title has-text-white">
+            {{ getProposition(fabricant).requierements }}
+          </h1>
+          <div class="subtitle has-text-white">
+            Cout : {{ getProposition(fabricant).cost }}
+          </div>
+          <div class="subtitle has-text-white">
+            Time : {{ getProposition(fabricant).time }}
+          </div>
+          <div class="subtitle has-text-white">
+            Quantité : {{ getProposition(fabricant).quantity }}
+          </div>
+        </div>
+        <div v-else class="box has-background-danger is-rounded m-2">
+          <h1 class="title has-text-white">
+            {{ getProposition(fabricant).requierements }}
+          </h1>
+          <div class="subtitle has-text-white">
+            Cout : {{ getProposition(fabricant).cost }}
+          </div>
+          <div class="subtitle has-text-white">
+            Time : {{ getProposition(fabricant).time }}
+          </div>
+          <div class="subtitle has-text-white">
+            Quantité : {{ getProposition(fabricant).quantity }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,16 +116,28 @@ export default {
   name: "OfferElement",
   methods: {
     showModal(id) {
-      let modal = document.querySelector(".id"+id);
+      let modal = document.querySelector(".id" + id);
       modal.classList.add("is-active");
     },
     closeModal(id) {
-      let modal = document.querySelector(".id"+id);
+      let modal = document.querySelector(".id" + id);
       modal.classList.remove("is-active");
+    },
+    getFabricant() {
+      return document.getElementById("fabricant").value;
+    },
+    getProposition(fabricant) {
+      for (let i = 0; i < this.propositions.length; i++) {
+        let prop = this.propositions[i];
+        if (prop["fabricant"] === fabricant) {
+          return prop;
+        }
+      }
+      return null;
     },
   },
   props: {
-    id:{
+    id: {
       type: String,
       required: true,
     },
@@ -113,6 +159,10 @@ export default {
     },
     propositions: {
       type: Array,
+      required: true,
+    },
+    fabricant: {
+      type: String,
       required: true,
     },
   },
