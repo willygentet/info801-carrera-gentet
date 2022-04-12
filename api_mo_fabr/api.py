@@ -14,7 +14,7 @@ OFFERS = [
         {'requierements': 'Faire un truc', 'cost': 12000, 'time': 32, 'quantity': 12, 'fabricant': 'ikea', 'valid': False, 'message': ""},
         {'requierements': 'Faire un autre truc', 'cost': 11000, 'time': 32, 'quantity': 12, 'fabricant': 'apple', 'valid': False, 'message': ""}
     ]}},
-    {'offer2': {'requierements': 'Faire des trucs de fou', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': []}}
+    {'offer2': {'requierements': 'Faire des trucs de fou FURIEUX', 'cost': 1, 'time': 1, 'quantity': 1, 'propositions': []}}
 ]
 
 def get_next_offer():

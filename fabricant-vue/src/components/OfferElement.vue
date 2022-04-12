@@ -22,7 +22,7 @@
         <div class="modal-background"></div>
         <div class="modal-content">
           <div class="box">
-            <h1 class="title has-text-centered">Ajouter une offre</h1>
+            <h1 class="title has-text-centered">Ajouter une proposition</h1>
             <div id="form" class="has-text-centered">
               <label class="subtitle" htmlFor="caracteristiques"
                 >Caractéristiques technique :
@@ -41,7 +41,7 @@
                 id="cout"
                 name="cout"
                 placeholder="Cout"
-                value="cost"
+                :value="cost"
               />
               <label class="subtitle">Temps : </label>
               <input
@@ -50,7 +50,7 @@
                 id="temps"
                 name="temps"
                 placeholder="Nb jours"
-                value="time"
+                :value="time"
               />
               <label class="subtitle">Quantité : </label>
               <input
@@ -59,7 +59,7 @@
                 id="quantite"
                 name="quantite"
                 placeholder="Volume"
-                value="quantity"
+                :value="quantity"
               />
               <button class="button m-2 is-success">Ajouter</button>
             </div>
