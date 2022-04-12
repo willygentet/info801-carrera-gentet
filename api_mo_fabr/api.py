@@ -10,11 +10,11 @@ api = Api(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 OFFERS = [
-    {'offer1': {'requierements': 'Faire un truc', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': [
+    {'offer1': {'id':0,'requierements': 'Faire un truc', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': [
         {'requierements': 'Faire un truc', 'cost': 12000, 'time': 32, 'quantity': 12, 'fabricant': 'ikea', 'valid': False, 'message': ""},
         {'requierements': 'Faire un autre truc', 'cost': 11000, 'time': 32, 'quantity': 12, 'fabricant': 'apple', 'valid': False, 'message': ""}
     ]}},
-    {'offer2': {'requierements': 'Faire des trucs de fou FURIEUX', 'cost': 1, 'time': 1, 'quantity': 1, 'propositions': []}}
+    {'offer2': {'id':1,'requierements': 'Faire des trucs de fou FURIEUX', 'cost': 1, 'time': 1, 'quantity': 1, 'propositions': []}}
 ]
 
 def get_next_offer():
@@ -97,7 +97,7 @@ class Offers(Resource):
         args = parser.parse_args()
         print(f"args: {args}")
         offer_id = 'offer%i' % get_next_offer()
-        OFFERS.append({offer_id: {'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'propositions': []}})
+        OFFERS.append({offer_id: {'id':len(OFFERS),'requierements': args['requierements'], 'cost': args['cost'], 'time': args['time'], 'quantity': args['quantity'], 'propositions': []}})
         return OFFERS[len(OFFERS)-1], 201
 
 ##
