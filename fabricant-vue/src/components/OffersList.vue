@@ -15,8 +15,7 @@
         :key="get(proposition).requierements"
       >
         <offer-element
-
-          :id="get(proposition).id"
+          :id="Object.keys(proposition)[0]"
           :requierements="get(proposition).requierements"
           :cost="get(proposition).cost"
           :time="get(proposition).time"

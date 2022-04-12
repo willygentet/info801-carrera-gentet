@@ -61,7 +61,9 @@
                 placeholder="Volume"
                 :value="this.quantity"
               />
-              <button class="button m-2 is-success">Ajouter</button>
+              <button @click="addProposition()" class="button m-2 is-success">
+                Ajouter
+              </button>
             </div>
           </div>
         </div>
@@ -89,6 +91,12 @@
           <div class="subtitle has-text-white">
             Quantité : {{ getProposition(fabricant).quantity }}
           </div>
+          <div
+            v-if="getProposition(fabricant).message.length > 0"
+            class="subtitle has-text-white"
+          >
+            Message : {{ getProposition(fabricant).message }}
+          </div>
         </div>
         <div v-else class="box has-background-danger is-rounded m-2">
           <h1 class="title has-text-white">
@@ -103,6 +111,12 @@
           <div class="subtitle has-text-white">
             Quantité : {{ getProposition(fabricant).quantity }}
           </div>
+          <div
+            v-if="getProposition(fabricant).message.length > 0"
+            class="subtitle has-text-white"
+          >
+            Message : {{ getProposition(fabricant).message }}
+          </div>
         </div>
       </div>
     </div>
@@ -110,7 +124,7 @@
 </template>
 
 <script>
-//import AddPropositionModal from "./AddPropositionModal.vue";
+import axios from "axios";
 export default {
   components: {},
   name: "OfferElement",
@@ -135,6 +149,29 @@ export default {
       }
       return null;
     },
+    addProposition() {
+      let r = document.getElementById("caracteristiques").value;
+      let c = document.getElementById("cout").value;
+      let t = document.getElementById("temps").value;
+      let q = document.getElementById("quantite").value;
+      let url =
+        "http://127.0.0.1:5000/addprop/" +
+        this.id +
+        "?requierements=" +
+        r +
+        "&cost=" +
+        c +
+        "&time=" +
+        t +
+        "&quantity=" +
+        q +
+        "&fabricant=" +
+        this.fabricant;
+      if (this.fabricant != "") {
+        axios.patch(url);
+        this.closeModal(this.id);
+      }
+    },
   },
   props: {
     id: {
@@ -146,15 +183,15 @@ export default {
       required: true,
     },
     cost: {
-      type: Number,
+      type: String,
       required: true,
     },
     time: {
-      type: Number,
+      type: String,
       required: true,
     },
     quantity: {
-      type: Number,
+      type: String,
       required: true,
     },
     propositions: {
