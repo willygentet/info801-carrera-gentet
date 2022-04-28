@@ -10,11 +10,10 @@ api = Api(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 OFFERS = [
-    {'offer1': {'id':0,'requierements': 'Faire un truc', 'cost': 10000, 'time': 32, 'quantity': 12, 'propositions': [
-        {'requierements': 'Faire un truc', 'cost': 12000, 'time': 32, 'quantity': 12, 'fabricant': 'ikea', 'valid': False, 'message': ""},
-        {'requierements': 'Faire un autre truc', 'cost': 11000, 'time': 32, 'quantity': 12, 'fabricant': 'apple', 'valid': False, 'message': ""}
+    {'offer1': {'id':0,'requierements': 'Maison au bord du lac', 'cost': 1000000, 'time': 365, 'quantity': 1, 'propositions': [
+        {'requierements': 'Maison au bord du lac', 'cost': 1200000, 'time': 200, 'quantity': 1, 'fabricant': 'Maisons Alain Métral', 'valid': False, 'message': ""},
     ]}},
-    {'offer2': {'id':1,'requierements': 'Faire des trucs de fou FURIEUX', 'cost': 1, 'time': 1, 'quantity': 1, 'propositions': []}}
+    {'offer2': {'id':1,'requierements': 'Statues pour la maison au bord du lac', 'cost': 10000, 'time': 31, 'quantity': 7, 'propositions': []}}
 ]
 
 def get_next_offer():
